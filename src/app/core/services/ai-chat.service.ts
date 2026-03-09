@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 export interface Message {
   text: string;
@@ -10,7 +11,7 @@ export interface Message {
   providedIn: 'root',
 })
 export class AiChatService {
-  private apiKey = 'AIzaSyBsBlL7dPlLhB0bSaCBZ3YzjUTb4kLA6Ng';
+  private apiKey = environment.geminiApiKey;
   private apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${this.apiKey}`;
 
   messages = signal<Message[]>([

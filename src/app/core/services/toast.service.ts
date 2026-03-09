@@ -10,7 +10,7 @@ export class ToastService {
     const id = Math.random().toString(36).substring(2, 9);
     this.toastsSignal.update(toasts => [...toasts, { id, message, type }]);
     
-    // Auto-remove after 3 seconds
+
     setTimeout(() => this.remove(id), 3000);
   }
 

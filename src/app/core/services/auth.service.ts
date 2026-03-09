@@ -5,7 +5,6 @@ import { User } from '../../shared/models/models';
 export class AuthService {
   private currentUserSignal = signal<User | null>(null);
   
-  // Base de datos de usuarios (se persiste en localStorage)
   private users: User[] = [];
 
   constructor() {
@@ -31,7 +30,6 @@ export class AuthService {
   }
 
   register(data: { fullName: string; email: string; password: string; phone: string }): { success: boolean; message: string } {
-    // Verificar si el email ya existe
     if (this.users.some(u => u.email === data.email)) {
       return { success: false, message: 'Este correo electrónico ya está registrado.' };
     }
@@ -48,7 +46,6 @@ export class AuthService {
     this.users.push(newUser);
     this.persistUsers();
 
-    // Auto-login después del registro
     const userWithoutPass = { ...newUser };
     delete userWithoutPass.password;
     this.currentUserSignal.set(userWithoutPass);
@@ -89,7 +86,6 @@ export class AuthService {
       if (stored) {
         this.users = JSON.parse(stored);
       } else {
-        // Usuarios iniciales (solo la primera vez)
         this.users = [
           { id: 'admin1', fullName: 'Dra. Ana López (Admin)', email: 'admin@vet.com', password: 'admin123', phone: '000000000', role: 'admin' },
           { id: 'client1', fullName: 'Juan Pérez', email: 'juan@mail.com', password: 'cliente123', phone: '987654321', role: 'cliente' },

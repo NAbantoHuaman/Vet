@@ -9,7 +9,7 @@ export class HighlightUpcomingDirective implements OnInit {
   private renderer = inject(Renderer2);
 
   ngOnInit() {
-    if (this.status !== 'pendiente') return;
+    if (this.status !== 'reservado') return;
     const today = new Date(); today.setHours(0, 0, 0, 0);
     const apptDate = new Date(this.appointmentDate); apptDate.setHours(0, 0, 0, 0);
     const diffDays = Math.ceil(Math.abs(apptDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));

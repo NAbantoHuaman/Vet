@@ -8,29 +8,29 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `
-    <div class="max-w-md mx-auto mt-12 bg-white p-8 rounded-3xl shadow-xl border border-teal-50 relative overflow-hidden">
-      <div class="absolute -top-20 -right-20 w-40 h-40 bg-teal-50 rounded-full opacity-50 blur-2xl"></div>
+    <div class="max-w-md mx-auto mt-12 bg-white p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden animate-fade-in-up">
+      <div class="absolute -top-24 -right-24 w-56 h-56 bg-teal-400/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-56 h-56 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none"></div>
       
-      <div class="text-center mb-6 relative z-10">
-        <div class="w-16 h-16 mx-auto bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+      <div class="text-center mb-8 relative z-10">
+        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-teal-50 to-teal-100/50 text-teal-600 rounded-[1.5rem] flex items-center justify-center mb-6 shadow-inner border border-teal-100/50">
           @if(!isRegisterMode()) {
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
           } @else {
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
           }
         </div>
-        <h2 class="text-3xl font-black text-gray-800">{{ isRegisterMode() ? 'Crear Cuenta' : 'Iniciar Sesión' }}</h2>
-        <p class="text-gray-500 mt-2">{{ isRegisterMode() ? 'Regístrate para gestionar a tus mascotas.' : 'Accede al portal de VetCare.' }}</p>
+        <h2 class="text-4xl font-black text-gray-900 tracking-tight leading-tight">{{ isRegisterMode() ? 'Crear Cuenta' : 'Iniciar Sesión' }}</h2>
+        <p class="text-[15px] font-medium text-gray-500 mt-2">{{ isRegisterMode() ? 'Regístrate para gestionar a tus mascotas.' : 'Accede al portal de VetCare.' }}</p>
       </div>
 
-      <!-- TABS -->
-      <div class="flex bg-gray-100 rounded-xl p-1 mb-6 relative z-10">
-        <button (click)="isRegisterMode.set(false)" class="flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all"
-                [class]="!isRegisterMode() ? 'bg-white text-teal-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'">
+      <div class="flex bg-slate-50 border border-slate-100/50 rounded-2xl p-1.5 mb-8 relative z-10 shadow-inner">
+        <button (click)="isRegisterMode.set(false)" class="flex-1 py-3 rounded-xl text-[13px] font-black uppercase tracking-widest transition-all duration-300"
+                [class]="!isRegisterMode() ? 'bg-white text-teal-600 shadow-sm border border-slate-100/50' : 'text-slate-400 hover:text-slate-600'">
           Ingresar
         </button>
-        <button (click)="isRegisterMode.set(true)" class="flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all"
-                [class]="isRegisterMode() ? 'bg-white text-teal-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'">
+        <button (click)="isRegisterMode.set(true)" class="flex-1 py-3 rounded-xl text-[13px] font-black uppercase tracking-widest transition-all duration-300"
+                [class]="isRegisterMode() ? 'bg-white text-teal-600 shadow-sm border border-slate-100/50' : 'text-slate-400 hover:text-slate-600'">
           Registrarse
         </button>
       </div>
@@ -46,49 +46,47 @@ import { Router } from '@angular/router';
         </div>
       }
 
-      <!-- FORMULARIO LOGIN -->
       @if(!isRegisterMode()) {
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="space-y-5 relative z-10">
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Correo Electrónico</label>
-            <input type="email" formControlName="email" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" placeholder="tu@correo.com">
+            <label class="block text-xs font-black text-slate-700 uppercase tracking-widest mb-2">Correo Electrónico</label>
+            <input type="email" formControlName="email" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all placeholder:text-slate-400 font-medium" placeholder="tu@correo.com">
           </div>
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Contraseña</label>
-            <input type="password" formControlName="password" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" placeholder="••••••••">
+            <div class="flex justify-between items-center mb-2">
+               <label class="block text-xs font-black text-slate-700 uppercase tracking-widest">Contraseña</label>
+               <a href="#" class="text-[11px] font-bold text-teal-600 hover:text-teal-700">¿Olvidaste tu contraseña?</a>
+            </div>
+            <input type="password" formControlName="password" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all placeholder:text-slate-400 font-medium" placeholder="••••••••">
           </div>
-          <button type="submit" [disabled]="loginForm.invalid" class="w-full py-4 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-bold rounded-2xl hover:from-teal-600 hover:to-emerald-600 disabled:from-gray-300 disabled:to-gray-300 shadow-md transition-all">
-            Ingresar al Sistema
+          <button type="submit" [disabled]="loginForm.invalid" class="w-full py-5 bg-teal-600 text-white font-black text-base tracking-wide rounded-2xl hover:bg-teal-700 disabled:opacity-50 disabled:hover:bg-teal-600 shadow-xl shadow-teal-500/20 active:scale-95 transition-all mt-6">
+            Iniciar Sesión
           </button>
         </form>
-
-        <div class="mt-6 pt-5 border-t border-gray-100 text-xs text-gray-400 text-center space-y-1 relative z-10">
-          <p><strong>Credenciales Admin:</strong> admin&#64;vet.com / admin123</p>
-          <p>O crea tu cuenta de cliente en la pestaña "Registrarse"</p>
-        </div>
       }
 
-      <!-- FORMULARIO REGISTRO -->
       @if(isRegisterMode()) {
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="space-y-4 relative z-10">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="space-y-4 relative z-10 animate-fade-in">
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Nombre Completo</label>
-            <input type="text" formControlName="fullName" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Ej: Carlos Mendoza">
+            <label class="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1.5">Nombre Completo</label>
+            <input type="text" formControlName="fullName" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all placeholder:text-slate-400 font-medium text-sm" placeholder="Ej: Carlos Mendoza">
           </div>
           <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Correo Electrónico</label>
-            <input type="email" formControlName="email" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" placeholder="tu@correo.com">
+            <label class="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1.5">Correo Electrónico</label>
+            <input type="email" formControlName="email" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all placeholder:text-slate-400 font-medium text-sm" placeholder="tu@correo.com">
           </div>
-          <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Teléfono</label>
-            <input type="tel" formControlName="phone" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" placeholder="987654321">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1.5">Teléfono</label>
+              <input type="tel" formControlName="phone" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all placeholder:text-slate-400 font-medium text-sm" placeholder="987654321">
+            </div>
+            <div>
+              <label class="block text-[11px] font-black text-slate-700 uppercase tracking-widest mb-1.5">Contraseña</label>
+              <input type="password" formControlName="password" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all placeholder:text-slate-400 font-medium text-sm" placeholder="Min. 6 char">
+            </div>
           </div>
-          <div>
-            <label class="block text-sm font-bold text-gray-700 mb-2">Contraseña</label>
-            <input type="password" formControlName="password" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Mínimo 6 caracteres">
-          </div>
-          <button type="submit" [disabled]="registerForm.invalid" class="w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-2xl hover:from-indigo-600 hover:to-purple-600 disabled:from-gray-300 disabled:to-gray-300 shadow-md transition-all">
-            Crear mi Cuenta
+          <button type="submit" [disabled]="registerForm.invalid" class="w-full py-5 bg-indigo-600 text-white font-black text-base tracking-wide rounded-2xl hover:bg-indigo-700 disabled:opacity-50 disabled:hover:bg-indigo-600 shadow-xl shadow-indigo-500/20 active:scale-95 transition-all mt-4">
+            Crear Cuenta
           </button>
         </form>
       }

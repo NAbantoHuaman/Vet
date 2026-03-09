@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
   private auth = inject(AuthService);
 
   ngOnInit() {
-    // Si ya está logueado, redirigir al dashboard correspondiente
     if (this.auth.isAuthenticated()) {
       if (this.auth.isAdmin()) {
         this.router.navigate(['/admin-dashboard']);

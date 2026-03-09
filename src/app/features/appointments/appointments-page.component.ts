@@ -15,7 +15,9 @@ import { AppointmentCalendarComponent } from './appointment-calendar.component';
       [currentUser]="auth.currentUser()!" 
       (onAddAppointment)="dataService.addAppointment($event)" 
       (onEditAppointment)="dataService.updateAppointment($event.id, $event.data)"
-      (onStatusChange)="dataService.updateAppointmentStatus($event.id, $event.status)">
+      (onAdvanceStep)="dataService.advanceStep($event)"
+      (onCancelService)="dataService.cancelService($event)"
+      (onCompleteService)="dataService.completeServiceWithExtras($event.id, $event.extras)">
     </app-appointment-calendar>
   `
 })
